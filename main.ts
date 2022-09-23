@@ -15,3 +15,10 @@ function insertRow(name: string) {
   const createdAt = Date.now();
   sheet.appendRow([name, createdAt]);
 }
+
+function doGet() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("保存シート");
+  const data = sheet.getDataRange().getValues();
+
+  return ContentService.createTextOutput(JSON.stringify(data));
+}
